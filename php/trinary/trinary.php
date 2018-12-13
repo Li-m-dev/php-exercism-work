@@ -2,17 +2,13 @@
 
 function toDecimal ($str)
 {
-  if (!preg_match('/^[0-2]*$/', $str)) {
-    return 0;
+  if (preg_match('/^[0-2]*$/', $str)) {    
+    $arr = str_split(strrev($str));
+    $value = 0;
+    for ($i = count($arr)-1; $i >= 0; $i--) {   
+      $value += $arr[$i]* 3 ** $i;
+      }  
+    return $value;
   }
-  $arr = str_split($str);
-  $value = 0;
-
-  for ($i = 0; $i < count($arr); $i++) {
-      
-    $value += $arr[$i]*pow(3,count($arr)-1-$i);
-
-    }
-    
-  return $value;
+  return 0;
 }
